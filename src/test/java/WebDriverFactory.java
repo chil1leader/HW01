@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -25,34 +26,61 @@ public class WebDriverFactory {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 logger.info("Драйвер для браузера Google Chrome");
+                logger.info("Load strategy: " + loadStrategy.toUpperCase());
                 ChromeOptions optionsChrome = new ChromeOptions();
 
-                if (loadStrategy.equals("NORMAL".toLowerCase())) optionsChrome.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-                else if (loadStrategy.equals("EAGER".toLowerCase())) optionsChrome.setPageLoadStrategy(PageLoadStrategy.EAGER);
-                else optionsChrome.setPageLoadStrategy(PageLoadStrategy.NONE);
-
                 optionsChrome.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
-                optionsChrome.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
+                optionsChrome.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, false);
                 optionsChrome.addArguments("--incognito");
                 optionsChrome.addArguments("--start-maximized");
-                //У меня  не работает полноэкранный режим через общие настройки, поэтому прописывал тут
-                return new ChromeDriver(optionsChrome);
+
+                switch (loadStrategy) {
+
+                    case "normal":
+                        optionsChrome.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                        return new ChromeDriver(optionsChrome);
+
+                    case "eager":
+                        optionsChrome.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                        return new ChromeDriver(optionsChrome);
+
+                    case "none":
+                        optionsChrome.setPageLoadStrategy(PageLoadStrategy.NONE);
+                        return new ChromeDriver(optionsChrome);
+
+                    default:
+                        throw new RuntimeException("Incorrect load strategy name");
+
+                }
+
 
             case "firefox" :
                 WebDriverManager.firefoxdriver().setup();
                 logger.info("Драйвер для браузера Mozilla Firefox");
+                logger.info("Load strategy: " + loadStrategy.toUpperCase());
                 FirefoxOptions optionsFF = new FirefoxOptions();
-
-                if (loadStrategy.equals("NORMAL".toLowerCase())) optionsFF.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-                else if (loadStrategy.equals("EAGER".toLowerCase())) optionsFF.setPageLoadStrategy(PageLoadStrategy.EAGER);
-                else optionsFF.setPageLoadStrategy(PageLoadStrategy.NONE);
 
                 optionsFF.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
                 optionsFF.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-                optionsFF.addArguments("--incognito");
-                optionsFF.addArguments("--start-maximized");
-                //У меня  не работает полноэкранный режим через общие настройки, поэтому прописывал тут
-                return new FirefoxDriver();
+                optionsFF.addArguments("-private");
+                optionsFF.addArguments("-kiosk");
+                switch (loadStrategy) {
+
+                    case "normal":
+                        optionsFF.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                        return new FirefoxDriver(optionsFF);
+
+                    case "eager":
+                        optionsFF.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                        return new FirefoxDriver(optionsFF);
+
+                    case "none":
+                        optionsFF.setPageLoadStrategy(PageLoadStrategy.NONE);
+                        return new FirefoxDriver(optionsFF);
+                    default:
+                        throw new RuntimeException("Incorrect load strategy name");
+
+                }
 
             default:
                 throw new RuntimeException("Incorrect browser name");
