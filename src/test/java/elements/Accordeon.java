@@ -10,7 +10,7 @@ public class Accordeon extends BaseElement {
     }
 
     public void show() {
-        WaitFor.visibilityOfElementLocated(by);
+        WaitFor.visibilityOfElement(webElement);
         WaitFor.clickabilityOfElement(webElement);
         action.moveToElement(webElement).click().build().perform();
     }

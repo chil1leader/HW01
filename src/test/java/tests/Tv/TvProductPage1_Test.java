@@ -48,17 +48,8 @@ public class TvProductPage1_Test extends BaseTest {
 
         TvProductPageSteps tvProductPageSteps = getProductPage(tv);
 
-        String expectedCompany = tv.getCompany().getCompany();
-        int expectedMinScreenSize = tv.getMinSize();
-        int expectedMaxScreenSize = tv.getMaxSize();
-        String expectedRefreshRate = tv.getRate().getRate();
-        String expectedBacklight = tv.getBacklight();
-
         TvProductPageAssert tvProductAssert = new TvProductPageAssert(tvProductPageSteps);
-        tvProductAssert.companyEquals(expectedCompany);
-        tvProductAssert.screenSizeEquals(expectedMinScreenSize, expectedMaxScreenSize);
-        tvProductAssert.refreshRateEquals(expectedRefreshRate);
-        tvProductAssert.backlightEquals(expectedBacklight);
+        tvProductAssert.characteristicsEquals(tv);
 
     }
 
@@ -76,6 +67,5 @@ public class TvProductPage1_Test extends BaseTest {
         tvPageSteps.orderByExpensiveFirst();
         tvPageSteps.clickLinkFirstProduct("Телевизор LED Samsung QE75Q950TSUXRU серый");
         return new TvProductPageSteps(new TvProductPage(driver));
-
     }
 }

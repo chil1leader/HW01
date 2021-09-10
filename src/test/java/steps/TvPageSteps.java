@@ -25,7 +25,6 @@ public class TvPageSteps {
     public void orderByExpensiveFirst() {
         tvPage.accordeonSortClick();
         tvPage.rbtnExpensiveClick();
-        WaitFor.loadingPage();
         ScreenShot.takeScreenshot(new Date(), "TvPageAfterSorting_");
     }
 

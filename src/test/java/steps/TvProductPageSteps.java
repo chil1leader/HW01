@@ -17,33 +17,25 @@ public class TvProductPageSteps {
     public TvProductPageSteps(TvProductPage tvProductPage) {
         this.tvProductPage = tvProductPage;
         logger.info("Открыта страница [Продукт. Телевизор]");
-        WaitFor.loadingPage();
         ScreenShot.takeScreenshot(new Date(), "TvProductPage_");
     }
-
 
 
     public String pageTitle() {
         return tvProductPage.getPageTitle();
     }
 
-
-    public String getActualCompany() {
+    public void clickCharacteristicsButton() {
         JSExec.scrollBy(0,800);
         tvProductPage.btnCharacteristicsClick();
-        return tvProductPage.getProductCompany();
+        ScreenShot.takeScreenshot(new Date(), "Characteristics_");
     }
 
-    public String getActualScreenSize() {
-        return tvProductPage.getProductScreenSize();
-    }
+    public String getActualCompany() { return tvProductPage.getProductCompany(); }
+
+    public String getActualScreenSize() { return tvProductPage.getProductScreenSize(); }
 
     public String getActualRefreshRate() { return tvProductPage.getProductRefreshRate(); }
 
-    public String getActualBacklight() {
-
-        ScreenShot.takeScreenshot(new Date(), "Characteristics_");
-        WaitFor.loadingPage();
-        return tvProductPage.getProductBacklight();
-    }
+    public String getActualBacklight() { return tvProductPage.getProductBacklight(); }
 }
