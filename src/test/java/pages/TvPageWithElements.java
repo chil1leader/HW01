@@ -25,8 +25,8 @@ public class TvPageWithElements extends BasePage {
     String chbxCompanyXpath = "//span[contains(text(), \"company\")]";
 
     String accordeonSizeScreenXpath = "//span[contains(text(), \"Диагональ\")]";
-    String txtbxMinSizeScreen = "//input[@placeholder='от 22']";
-    String txtbxMaxSizeScreen = "//input[@placeholder='до 88']";
+    String txtbxMinSizeScreen = "//div[6]//div[1]/input";
+    String txtbxMaxSizeScreen = "//div[6]//div[2]/input";
 
     String accordeonRefreshRateXpath = "//span[contains(text(), \"Частота\")]";
     String chbxRefreshRateXpath = "//span[contains(text(), \"rate\")]";
