@@ -50,9 +50,4 @@ public class WaitFor {
         wait.until((ExpectedCondition<Boolean>) webDriver ->
                 webDriver.findElement(webElement).getText().contains(product));
     }
-
-    public static void loadingPage() {
-        wait.until(webDriver -> JSExec.js.executeScript("return document.readyState").equals("complete"));
-    }
-
 }

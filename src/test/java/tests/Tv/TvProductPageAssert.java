@@ -1,5 +1,6 @@
 package tests.Tv;
 
+import models.Tv;
 import org.junit.jupiter.api.Assertions;
 import steps.TvProductPageSteps;
 
@@ -15,17 +16,14 @@ public class TvProductPageAssert {
     public void pageTitleEquals(String expected) {
         String actual = tvProductPageSteps.pageTitle();
         Assertions.assertEquals(expected, actual, "Ошибка! Заголовок страницы не соответствует ожидаемому!");
-        
     }
 
     public void companyEquals(String expected) {
-
         String actual = tvProductPageSteps.getActualCompany();
         Assertions.assertTrue(actual.contains(expected), "Ошибка! Актуальная компания не соответствует фильтрации");
     }
 
     public void screenSizeEquals(int expectedMin, int expectedMax) {
-
         int actual = Integer.parseInt(tvProductPageSteps.getActualScreenSize().replaceAll("\\D+",""));
         Assertions.assertTrue(actual >= expectedMin & actual <= expectedMax, "Ошибка! Актуальная диагональ не соответствует фильтрации");
     }
@@ -38,5 +36,13 @@ public class TvProductPageAssert {
     public void backlightEquals(String expectedBacklight) {
         String actual = tvProductPageSteps.getActualBacklight();
         Assertions.assertTrue(actual.contains(expectedBacklight), "Ошибка! Актуальная компания не соответствует фильтрации");
+    }
+
+    public void characteristicsEquals(Tv tv) {
+        tvProductPageSteps.clickCharacteristicsButton();
+        this.companyEquals(tv.getCompany().getCompany());
+        this.screenSizeEquals(tv.getMinSize(), tv.getMaxSize());
+        this.refreshRateEquals(tv.getRate().getRate());
+        this.backlightEquals(tv.getBacklight());
     }
  }

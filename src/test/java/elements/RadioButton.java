@@ -11,6 +11,7 @@ public class RadioButton extends BaseElement{
 
     public void setSelected(boolean value) {
         if (value != isSelected()) {
+            WaitFor.visibilityOfElement(webElement);
             WaitFor.clickabilityOfElement(webElement);
             action.moveToElement(webElement).click().build().perform();
         }
