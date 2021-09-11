@@ -93,6 +93,7 @@ public class TvPageWithElements extends BasePage {
     }
 
     public void accordeonSortClick() {
+        driver.navigate().refresh();
         Accordeon accordeonSort = new Accordeon(driver, By.xpath(accordeonSortXpath));
         accordeonSort.show();
         logger.info("Нажата выпадашка \"Сортировка\"");
