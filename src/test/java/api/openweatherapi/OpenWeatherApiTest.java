@@ -1,4 +1,4 @@
-package openweatherapi;
+package api.openweatherapi;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.parallel.Execution;

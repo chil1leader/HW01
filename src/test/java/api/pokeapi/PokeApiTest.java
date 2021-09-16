@@ -1,4 +1,4 @@
-package pokeapi;
+package api.pokeapi;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
