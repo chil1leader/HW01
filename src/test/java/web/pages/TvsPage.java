@@ -69,7 +69,9 @@ public class TvsPage extends BasePage {
         return new MainBlock(mainBlock);
     }
 
-    public Link fullDivCompany() {return new Link(fullDivCompany);}
+    public Link fullDivCompany() {
+        return new Link(fullDivCompany);
+    }
 
     public CheckBox chbxCompany(String company) {
         return new CheckBox(findCheckBoxCompany(company));
@@ -125,24 +127,23 @@ public class TvsPage extends BasePage {
         return new Button(buttonApply);
     }
 
-    // 3. Сортировка
-    // Аккордеон "Сортировка"
+
     public Accordeon accordeonSort() {
         return new Accordeon(accordeonSort);
     }
 
-    // Переключатель "Сортировка"
+
     public RadioButton radioButtonSort(String sort) {
         return new RadioButton(findRadioButtonSort(sort));
     }
 
-    // Поиск переключателя "Сортировка"
+
     private WebElement findRadioButtonSort(String sort) {
         WaitHelper.visibilityOfElement(divSort);
         return divSort.findElement(By.xpath("//span[contains(text(), \"" + sort + "\")]"));
     }
 
-    // 4. Ссылка на первый продукт в списке
+
     public Link linkFirstProduct() {
         try {
             Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofMillis(1000));

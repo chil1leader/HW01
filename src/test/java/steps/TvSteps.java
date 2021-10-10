@@ -19,7 +19,6 @@ import java.util.Map;
 public class TvSteps {
     private Logger logger = LogManager.getLogger(TvSteps.class);
 
-    // Страницы
     StartPage startPage;
     TvsPage tvsPage;
     TvProductPage tvProductPage;
@@ -30,7 +29,6 @@ public class TvSteps {
         startPage = new StartPage(WebDriverFactory.getCurrentDriver());
         tvsPage = new TvsPage(WebDriverFactory.getCurrentDriver());
         tvProductPage = new TvProductPage(WebDriverFactory.getCurrentDriver());
-        // Открыть страницу https://www.dns-shop.ru/
         WebDriverFactory.getCurrentDriver().get("https://www.dns-shop.ru/");
         logger.info("Открыта Стартовая страница сайта DNS");
     }
@@ -45,7 +43,7 @@ public class TvSteps {
 
     @Тогда("Проверить: В заголовке страницы отображается текст Телевизоры")
     public void assertTitle() {
-        // Проверка заголовка страницы
+
         logger.info("Проверка заголовка страницы");
         Assertions.assertTrue(tvsPage.getPageTitle().contains("Телевизоры"), "В заголовке страницы не отображается текст Телевизоры");
     }

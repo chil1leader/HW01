@@ -18,6 +18,8 @@ public class ActionHelper {
         actions.moveToElement(webElement).build().perform();
     }
 
-    public static void clickElement(WebElement webElement) { actions.moveToElement(webElement).click().build().perform();}
+    public static void clickElement(WebElement webElement) {
+        actions.moveToElement(webElement).click().build().perform();
+    }
 
 }

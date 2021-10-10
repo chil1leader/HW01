@@ -37,8 +37,8 @@ public class DriverHooks {
 
     @After()
     public void stopDriverAfterScenario() {
-        if(driver != null) {
-            // Закрываем его
+        if (driver != null) {
+
             driver.quit();
             logger.info("Драйвер остановлен!");
         }

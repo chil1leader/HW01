@@ -4,23 +4,23 @@ import org.openqa.selenium.WebElement;
 import web.helpers.ActionHelper;
 import web.helpers.WaitHelper;
 
-// Класс "Переключатель"
-public class RadioButton extends BaseElement{
-    // Конструктор
+
+public class RadioButton extends BaseElement {
+
     public RadioButton(WebElement webElement) {
         super(webElement);
     }
 
-    // Установка переключателя
+
     public void setSelected(boolean value) {
-        // Ожидание кликабельности переключателя
+
         WaitHelper.clickabilityOfElement(webElement);
         if (value != isSelected()) {
             ActionHelper.clickElement(webElement);
         }
     }
 
-    // Проверка, что переключатель установлен
+
     public boolean isSelected() {
         return webElement.isSelected();
     }
