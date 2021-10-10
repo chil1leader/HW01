@@ -9,18 +9,15 @@ import models.valueobjects.Company;
 import models.valueobjects.RefreshRate;
 import org.apache.logging.log4j.*;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Sleeper;
 import web.drivers.*;
 import web.helpers.JavaScriptHelper;
 import web.pages.*;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class SmartphoneSteps {
-    private Logger logger = LogManager.getLogger(SmartphoneSteps.class);
+public class TvSteps {
+    private Logger logger = LogManager.getLogger(TvSteps.class);
 
     // Страницы
     StartPage startPage;
