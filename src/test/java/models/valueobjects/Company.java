@@ -2,12 +2,16 @@ package models.valueobjects;
 
 import java.io.Serializable;
 
+
 public class Company implements Serializable {
+
     private String company;
+
 
     public Company() {
 
     }
+
 
     public Company(String company) {
         if (!company.isEmpty())
@@ -16,9 +20,11 @@ public class Company implements Serializable {
             throw new IllegalArgumentException("Наименование производителя не может быть пустым!");
     }
 
+
     public String getCompany() {
         return this.company;
     }
+
 
     public boolean equals(Company otherCompany) {
         return this.company.equals(otherCompany.company);

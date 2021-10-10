@@ -9,20 +9,16 @@ import models.valueobjects.Company;
 import models.valueobjects.RefreshRate;
 import org.apache.logging.log4j.*;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Sleeper;
 import web.drivers.*;
 import web.helpers.JavaScriptHelper;
 import web.pages.*;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class SmartphoneSteps {
-    private Logger logger = LogManager.getLogger(SmartphoneSteps.class);
+public class TvSteps {
+    private Logger logger = LogManager.getLogger(TvSteps.class);
 
-    // Страницы
     StartPage startPage;
     TvsPage tvsPage;
     TvProductPage tvProductPage;
@@ -33,24 +29,23 @@ public class SmartphoneSteps {
         startPage = new StartPage(WebDriverFactory.getCurrentDriver());
         tvsPage = new TvsPage(WebDriverFactory.getCurrentDriver());
         tvProductPage = new TvProductPage(WebDriverFactory.getCurrentDriver());
-        // Открыть страницу https://www.dns-shop.ru/
         WebDriverFactory.getCurrentDriver().get("https://www.dns-shop.ru/");
         logger.info("Открыта Стартовая страница сайта DNS");
     }
 
     @Когда("Выполнен переход на страницу Телевизоры")
-    public void openSmartphonesPage() {
+    public void openTvsPage() {
         startPage.linkYes().click();
         startPage.linkTvAndMultimedia().focusOnLink();
         startPage.linkTvs().click();
         logger.info("Выполнен переход на страницу Телевизоры");
     }
 
-    @Тогда("Проверить: В заголовке страницы отображается текст Смартфоны")
+    @Тогда("Проверить: В заголовке страницы отображается текст Телевизоры")
     public void assertTitle() {
-        // Проверка заголовка страницы
+
         logger.info("Проверка заголовка страницы");
-        Assertions.assertTrue(tvsPage.getPageTitle().contains("Телевизоры"), "В заголовке страницы не отображается текст Смартфоны");
+        Assertions.assertTrue(tvsPage.getPageTitle().contains("Телевизоры"), "В заголовке страницы не отображается текст Телевизоры");
     }
 
     @И("В фильтре {string} выбрано значение {string}")
@@ -98,7 +93,7 @@ public class SmartphoneSteps {
     }
 
     @И("Выполнен переход на страницу первого товара из списка")
-    public void selectFirstSmartphone() {
+    public void selectFirstTv() {
         JavaScriptHelper.scrollBy(0, -600);
         tvsPage.linkFirstProduct().openInNewWindow();
         logger.info("Выполнен переход на страницу первого товара из списка");
@@ -216,13 +211,13 @@ public class SmartphoneSteps {
         tvsPage.chbxBacklight(tv.getBacklight()).setChecked(true);
         JavaScriptHelper.scrollBy(0, 400);
 
-        logger.info("***** Установлены фильтры из таблицы с двумя колонками");
+        logger.info("***** Установлены фильтры из таблицы с тремя колонками");
 
 
     }
 
     @Тогда("Проверить: В заголовке страницы отображается текст {string}")
-    public void assertTitleSmartphoneProduct(String company) {
+    public void assertTitleTvProduct(String company) {
         logger.info("Проверка заголовка страницы");
         Assertions.assertTrue(tvProductPage.getPageTitle().contains(company), "В заголовке страницы не отображается текст " + company);
     }
