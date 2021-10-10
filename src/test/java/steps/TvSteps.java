@@ -36,18 +36,18 @@ public class TvSteps {
     }
 
     @Когда("Выполнен переход на страницу Телевизоры")
-    public void openSmartphonesPage() {
+    public void openTvsPage() {
         startPage.linkYes().click();
         startPage.linkTvAndMultimedia().focusOnLink();
         startPage.linkTvs().click();
         logger.info("Выполнен переход на страницу Телевизоры");
     }
 
-    @Тогда("Проверить: В заголовке страницы отображается текст Смартфоны")
+    @Тогда("Проверить: В заголовке страницы отображается текст Телевизоры")
     public void assertTitle() {
         // Проверка заголовка страницы
         logger.info("Проверка заголовка страницы");
-        Assertions.assertTrue(tvsPage.getPageTitle().contains("Телевизоры"), "В заголовке страницы не отображается текст Смартфоны");
+        Assertions.assertTrue(tvsPage.getPageTitle().contains("Телевизоры"), "В заголовке страницы не отображается текст Телевизоры");
     }
 
     @И("В фильтре {string} выбрано значение {string}")
@@ -95,7 +95,7 @@ public class TvSteps {
     }
 
     @И("Выполнен переход на страницу первого товара из списка")
-    public void selectFirstSmartphone() {
+    public void selectFirstTv() {
         JavaScriptHelper.scrollBy(0, -600);
         tvsPage.linkFirstProduct().openInNewWindow();
         logger.info("Выполнен переход на страницу первого товара из списка");
@@ -213,13 +213,13 @@ public class TvSteps {
         tvsPage.chbxBacklight(tv.getBacklight()).setChecked(true);
         JavaScriptHelper.scrollBy(0, 400);
 
-        logger.info("***** Установлены фильтры из таблицы с двумя колонками");
+        logger.info("***** Установлены фильтры из таблицы с тремя колонками");
 
 
     }
 
     @Тогда("Проверить: В заголовке страницы отображается текст {string}")
-    public void assertTitleSmartphoneProduct(String company) {
+    public void assertTitleTvProduct(String company) {
         logger.info("Проверка заголовка страницы");
         Assertions.assertTrue(tvProductPage.getPageTitle().contains(company), "В заголовке страницы не отображается текст " + company);
     }
